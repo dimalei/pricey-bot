@@ -12,12 +12,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Job {
 
-    private Long id;
+    private String id;
     private String url;
     private List<Action> actions;
     private String attribute;
 
-    public Job(Long id, String url, String attribute) {
+    public Job(String id, String url, String attribute) {
         this.id = id;
         this.url = url;
         this.attribute = attribute;

@@ -3,20 +3,23 @@ package org.dimalei.pricey.bot;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class PriceyController {
 
-    private Map<Long, Job> db = new HashMap<>() {
+    private Map<String, Job> db = new HashMap<>() {
         {
-            put(123L, new Job(Long.valueOf(123), "https://www.baechli-bergsport.ch",
+            put("123", new Job("123", "https://www.baechli-bergsport.ch",
                     "/html/body/main/div[1]/div[1]/div[2]/article[2]/div[1]/form/div[4]/span[2]"));
         }
     };
@@ -36,7 +39,7 @@ public class PriceyController {
 
         System.out.println(db);
 
-        Job job = db.get(Long.valueOf(id));
+        Job job = db.get(id);
         if (job == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -45,10 +48,22 @@ public class PriceyController {
 
     @DeleteMapping("/jobs/{id}")
     public Job deleteJob(@PathVariable String id) {
-        Job deletedJob = db.remove(Long.valueOf(id));
+        Job deletedJob = db.remove(id);
         if (deletedJob == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return deletedJob;
+    }
+
+    /*
+     * POST localhost:8080/jobs
+     * Content-Type: application/json
+     * {"url":"www.shop.com", "attribute":"price"}
+     */
+    @PostMapping("/jobs")
+    public Job createJob(@RequestBody Job job) {
+        job.setId(UUID.randomUUID().toString());
+        db.put(job.getId(), job);
+        return job;
     }
 
 }
