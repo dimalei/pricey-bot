@@ -1,4 +1,4 @@
-package org.dimalei.pricey.bot;
+package org.dimalei.pricey.bot.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,11 @@
-package org.dimalei.pricey.bot;
+package org.dimalei.pricey.bot.services;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.dimalei.pricey.bot.model.Job;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,9 +30,10 @@ public class JobsService {
         return db.remove(id);
     }
 
-    public void save(Job job) {
+    public Job save(Job job) {
         job.setId(UUID.randomUUID().toString());
         db.put(job.getId(), job);
+        return job;
     }
 
 }
