@@ -1,9 +1,9 @@
-package org.dimalei.pricey.bot.controllers;
+package org.dimalei.pricey.bot.web;
 
 import java.util.Collection;
 
 import org.dimalei.pricey.bot.model.Job;
-import org.dimalei.pricey.bot.services.JobsService;
+import org.dimalei.pricey.bot.service.JobsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

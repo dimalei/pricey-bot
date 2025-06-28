@@ -1,4 +1,4 @@
-package org.dimalei.pricey.bot.services;
+package org.dimalei.pricey.bot.service;
 
 import java.util.Collection;
 import java.util.HashMap;
