@@ -4,10 +4,10 @@ CREATE TABLE IF NOT EXISTS jobs (
     url VARCHAR(255),
     target_property VARCHAR(255)
 );
-CREATE TABLE IF NOT EXISTS actions_table (
+CREATE TABLE IF NOT EXISTS intermediate_actions (
     id IDENTITY PRIMARY KEY,
     job_id BIGINT,
     position INT,
-    ACTION VARCHAR(255),
+    instruction VARCHAR(255),
     FOREIGN KEY (job_id) REFERENCES jobs(id)
 );
