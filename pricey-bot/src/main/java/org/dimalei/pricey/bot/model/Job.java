@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Table("JOBS")
 public class Job {
@@ -23,15 +22,19 @@ public class Job {
     private Integer id;
 
     @NotEmpty
+    @Setter
     private String title;
 
     @URL
+    @Setter
     private String url;
 
     @MappedCollection(idColumn = "JOB_ID", keyColumn = "POSITION")
+    @Setter
     private List<IntermediateAction> intermediateActions;
 
     @NotEmpty
+    @Setter
     private String targetProperty;
 
     public Job(String title, Integer id, String url, String attribute) {
