@@ -11,3 +11,10 @@ CREATE TABLE IF NOT EXISTS intermediate_actions (
     instruction VARCHAR(255),
     FOREIGN KEY (job_id) REFERENCES jobs(id)
 );
+CREATE TABLE IF NOT EXISTS scrape_results (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    job_id BIGINT,
+    timestamp DATETIME,
+    scrape_result VARCHAR(MAX),
+    FOREIGN KEY (job_id) REFERENCES jobs(id)
+);

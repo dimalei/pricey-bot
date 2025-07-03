@@ -1,5 +1,6 @@
 package org.dimalei.pricey.bot.model;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,12 @@ public class Job {
     @Setter
     private String title;
 
+    @NotEmpty
+    @Setter
+    private LocalTime executionTime;
+
     @URL
+    @NotEmpty
     @Setter
     private String url;
 
@@ -36,6 +42,10 @@ public class Job {
     @NotEmpty
     @Setter
     private String targetProperty;
+
+    @NotEmpty
+    @Setter
+    private boolean enabled;
 
     public Job(String title, Integer id, String url, String attribute) {
         this.title = title;
