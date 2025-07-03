@@ -33,7 +33,7 @@ public class WebScraperTest {
 
     @Test
     void testScrapeExampleCom() {
-        Job exampleJob = new Job("example", 0, "https://example.com", "/html/body/div/h1");
+        Job exampleJob = new Job("example", 0, "https://example.com", "body > div:nth-child(1) > h1:nth-child(1)");
         CompletableFuture<String> response = scraper.scrapeJob(exampleJob);
         // block execution until result is here
         String result = response.join();
@@ -44,7 +44,7 @@ public class WebScraperTest {
     void testScrapeDigitec() {
         Job exampleJob = new Job("example", 0,
                 "https://www.digitec.ch/de/s1/product/philips-cx553511-46-db-ventilator-36507367",
-                "/html/body/div/div[2]/div[2]/div/div/main/div/div[1]/div/div/div[2]/div/div[1]/span/strong/button");
+                ".yhSYYIi5");
         CompletableFuture<String> response = scraper.scrapeJob(exampleJob);
         // block execution until result is here
         String result = response.join();

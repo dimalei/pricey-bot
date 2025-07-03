@@ -16,7 +16,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumWebScraper implements WebScraper {
 
-    // static final String CHROME_ARGUMENTS[] = { "--headless=new" };
     static final String CHROME_ARGUMENTS[] = {
             "--headless=new",
             "--disable-gpu",
@@ -36,7 +35,7 @@ public class SeleniumWebScraper implements WebScraper {
 
             WebDriver driver = createWebDriver();
             String out = null;
-            By target = By.xpath(scrapeJob.getTargetProperty());
+            By target = By.cssSelector(scrapeJob.getTargetProperty());
             Wait<WebDriver> wait = new WebDriverWait(driver, TIMEOUT);
 
             try {
