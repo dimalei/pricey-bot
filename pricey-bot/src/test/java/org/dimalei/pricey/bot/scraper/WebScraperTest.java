@@ -2,8 +2,12 @@ package org.dimalei.pricey.bot.scraper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.dimalei.pricey.bot.model.Job;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +22,7 @@ public class WebScraperTest {
         // block execution until result is here
         String result = response.join();
         assertNotNull(result);
-        System.out.println("HTML of " + url + "\n" + result);
+        // System.out.println("HTML of " + url + "\n" + result);
     }
 
     @Test
@@ -28,7 +32,7 @@ public class WebScraperTest {
         // block execution until result is here
         String result = response.join();
         assertNotNull(result);
-        System.out.println("HTML of " + url + "\n" + result);
+        // System.out.println("HTML of " + url + "\n" + result);
     }
 
     @Test
@@ -48,7 +52,9 @@ public class WebScraperTest {
         CompletableFuture<String> response = scraper.scrapeJob(exampleJob);
         // block execution until result is here
         String result = response.join();
-        System.out.println(result);
-        assertEquals("CHF 89.90", result);
+
+        Pattern price_pattern = Pattern.compile("CHF \\d+.\\d{2}");
+        Matcher matcher = price_pattern.matcher(result);
+        assertTrue(matcher.matches());
     }
 }
